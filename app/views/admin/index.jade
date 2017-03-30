@@ -1,0 +1,528 @@
+extends layout
+
+block content
+    .tpl-content-wrapper
+        .tpl-content-page-title
+            | Amaze UI 首页组件
+        ol.am-breadcrumb
+            li
+                a.am-icon-home(href='#') 首页
+            li
+                a(href='#') 分类
+            li.am-active 内容
+        .tpl-content-scope
+            .note.note-info
+                h3
+                    | Amaze UI 为移动而生
+                    span.close(data-close='note')
+                p
+                    | Amaze UI 含近 20 个 CSS 组件、20 余 JS 组件，更有多个包含不同主题的 Web 组件，可快速构建界面出色、体验优秀的跨屏页面，大幅提升开发效率。
+                p
+                    span.label.label-danger 提示:
+                    |  Amaze UI 关注中文排版，根据用户代理调整字体，实现更好的中文排版效果。
+        .row
+            .am-u-lg-3.am-u-md-6.am-u-sm-12
+                .dashboard-stat.blue
+                    .visual
+                        i.am-icon-comments-o
+                    .details
+                        .number  1349 
+                        .desc  新消息 
+                    a.more(href='#')
+                        | 查看更多
+                        i.m-icon-swapright.m-icon-white
+            .am-u-lg-3.am-u-md-6.am-u-sm-12
+                .dashboard-stat.red
+                    .visual
+                        i.am-icon-bar-chart-o
+                    .details
+                        .number  62% 
+                        .desc  收视率 
+                    a.more(href='#')
+                        | 查看更多
+                        i.m-icon-swapright.m-icon-white
+            .am-u-lg-3.am-u-md-6.am-u-sm-12
+                .dashboard-stat.green
+                    .visual
+                        i.am-icon-apple
+                    .details
+                        .number  653 
+                        .desc  苹果设备 
+                    a.more(href='#')
+                        | 查看更多
+                        i.m-icon-swapright.m-icon-white
+            .am-u-lg-3.am-u-md-6.am-u-sm-12
+                .dashboard-stat.purple
+                    .visual
+                        i.am-icon-android
+                    .details
+                        .number  786 
+                        .desc  安卓设备 
+                    a.more(href='#')
+                        | 查看更多
+                        i.m-icon-swapright.m-icon-white
+        .row
+            .am-u-md-6.am-u-sm-12.row-mb
+                .tpl-portlet
+                    .tpl-portlet-title
+                        .tpl-caption.font-green
+                            i.am-icon-cloud-download
+                            span  Cloud 数据统计
+                        .actions
+                            ul.actions-btn
+                                li.red-on 昨天
+                                li.green 前天
+                                li.blue 本周
+                    // 此部分数据请在 js文件夹下中的 app.js 中的 “百度图表A” 处修改数据 插件使用的是 百度echarts
+                    #tpl-echarts-A.tpl-echarts
+            .am-u-md-6.am-u-sm-12.row-mb
+                .tpl-portlet
+                    .tpl-portlet-title
+                        .tpl-caption.font-red
+                            i.am-icon-bar-chart
+                            span  Cloud 动态资料
+                        .actions
+                            ul.actions-btn
+                                li.purple-on 昨天
+                                li.green 前天
+                                li.dark 本周
+                    .tpl-scrollable
+                        .number-stats
+                            .stat-number.am-fl.am-u-md-6
+                                .title.am-text-right  Total 
+                                .number.am-text-right.am-text-warning  2460 
+                            .stat-number.am-fr.am-u-md-6
+                                .title  Total 
+                                .number.am-text-success  2460 
+                        table.am-table.tpl-table
+                            thead
+                                tr.tpl-table-uppercase
+                                    th 人员
+                                    th 余额
+                                    th 次数
+                                    th 效率
+                            tbody
+                                tr
+                                    td
+                                        img.user-pic(src='assets/img/user01.png', alt='')
+                                        a.user-name(href='###') 禁言小张
+                                    td ￥3213
+                                    td 65
+                                    td.font-green.bold 26%
+                                tr
+                                    td
+                                        img.user-pic(src='assets/img/user02.png', alt='')
+                                        a.user-name(href='###') Alex.
+                                    td ￥2635
+                                    td 52
+                                    td.font-green.bold 32%
+                                tr
+                                    td
+                                        img.user-pic(src='assets/img/user03.png', alt='')
+                                        a.user-name(href='###') Tinker404
+                                    td ￥1267
+                                    td 65
+                                    td.font-green.bold 51%
+                                tr
+                                    td
+                                        img.user-pic(src='assets/img/user04.png', alt='')
+                                        a.user-name(href='###') Arron.y
+                                    td ￥657
+                                    td 65
+                                    td.font-green.bold 73%
+                                tr
+                                    td
+                                        img.user-pic(src='assets/img/user05.png', alt='')
+                                        a.user-name(href='###') Yves
+                                    td ￥3907
+                                    td 65
+                                    td.font-green.bold 12%
+                                tr
+                                    td
+                                        img.user-pic(src='assets/img/user06.png', alt='')
+                                        a.user-name(href='###') 小黄鸡
+                                    td ￥900
+                                    td 65
+                                    td.font-green.bold 10%
+        .row
+            .am-u-md-6.am-u-sm-12.row-mb
+                .tpl-portlet
+                    .tpl-portlet-title
+                        .tpl-caption.font-green
+                            span 指派任务
+                            span.caption-helper 16 件
+                        .tpl-portlet-input
+                            .portlet-input.input-small.input-inline
+                                .input-icon.right
+                                    i.am-icon-search
+                                    input.form-control.form-control-solid(type='text', placeholder='搜索...')
+                    #wrapper.wrapper
+                        #scroller.scroller
+                            ul.tpl-task-list
+                                li
+                                    .task-checkbox
+                                        input(type='hidden', value='1', name='test')
+                                        input.liChild(type='checkbox', value='2', name='test')
+                                    .task-title
+                                        span.task-title-sp  Amaze UI Icon 组件目前使用了 Font Awesome 
+                                        span.label.label-sm.label-success 技术部
+                                        span.task-bell
+                                            i.am-icon-bell-o
+                                    .task-config
+                                        .am-dropdown.tpl-task-list-dropdown(data-am-dropdown='')
+                                            a.am-dropdown-toggle.tpl-task-list-hover(href='###', data-am-dropdown-toggle='')
+                                                i.am-icon-cog
+                                                span.am-icon-caret-down
+                                            ul.am-dropdown-content.tpl-task-list-dropdown-ul
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-check
+                                                        |  保存
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-pencil
+                                                        |  编辑
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-trash-o
+                                                        |  删除
+                                li
+                                    .task-checkbox
+                                        input(type='hidden', value='1', name='test')
+                                        input.liChild(type='checkbox', value='2', name='test')
+                                    .task-title
+                                        span.task-title-sp  在 data-am-dropdown 里指定要适应到的元素，下拉内容的宽度会设置为该元素的宽度。当然可以直接在 CSS 里设置下拉内容的宽度。 
+                                        span.label.label-sm.label-danger 运营
+                                    .task-config
+                                        .am-dropdown.tpl-task-list-dropdown(data-am-dropdown='')
+                                            a.am-dropdown-toggle.tpl-task-list-hover(href='###', data-am-dropdown-toggle='')
+                                                i.am-icon-cog
+                                                span.am-icon-caret-down
+                                            ul.am-dropdown-content.tpl-task-list-dropdown-ul
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-check
+                                                        |  保存
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-pencil
+                                                        |  编辑
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-trash-o
+                                                        |  删除
+                                li
+                                    .task-checkbox
+                                        input(type='hidden', value='1', name='test')
+                                        input.liChild(type='checkbox', value='2', name='test')
+                                    .task-title
+                                        span.task-title-sp
+                                            | 使用 LESS： 通过设置变量 @fa-font-path 覆盖默认的值，如 @fa-font-path: "../fonts";。这个变量定义在 icon.less 里。
+                                        span.label.label-sm.label-warning 市场部
+                                    .task-config
+                                        .am-dropdown.tpl-task-list-dropdown(data-am-dropdown='')
+                                            a.am-dropdown-toggle.tpl-task-list-hover(href='###', data-am-dropdown-toggle='')
+                                                i.am-icon-cog
+                                                span.am-icon-caret-down
+                                            ul.am-dropdown-content.tpl-task-list-dropdown-ul
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-check
+                                                        |  保存
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-pencil
+                                                        |  编辑
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-trash-o
+                                                        |  删除
+                                li
+                                    .task-checkbox
+                                        input(type='hidden', value='1', name='test')
+                                        input.liChild(type='checkbox', value='2', name='test')
+                                    .task-title
+                                        span.task-title-sp  添加 .am-btn-group-justify class 让按钮组里的按钮平均分布，填满容器宽度。 
+                                        span.label.label-sm.label-default 已废弃
+                                    .task-config
+                                        .am-dropdown.tpl-task-list-dropdown(data-am-dropdown='')
+                                            a.am-dropdown-toggle.tpl-task-list-hover(href='###', data-am-dropdown-toggle='')
+                                                i.am-icon-cog
+                                                span.am-icon-caret-down
+                                            ul.am-dropdown-content.tpl-task-list-dropdown-ul
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-check
+                                                        |  保存
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-pencil
+                                                        |  编辑
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-trash-o
+                                                        |  删除
+                                li
+                                    .task-checkbox
+                                        input(type='hidden', value='1', name='test')
+                                        input.liChild(type='checkbox', value='2', name='test')
+                                    .task-title
+                                        span.task-title-sp  按照示例组织好 HTML 结构（不加 data-am-dropdown 属性），然后通过 JS 来调用。 
+                                        span.label.label-sm.label-success 技术部
+                                        span.task-bell
+                                            i.am-icon-bell-o
+                                    .task-config
+                                        .am-dropdown.tpl-task-list-dropdown(data-am-dropdown='')
+                                            a.am-dropdown-toggle.tpl-task-list-hover(href='###', data-am-dropdown-toggle='')
+                                                i.am-icon-cog
+                                                span.am-icon-caret-down
+                                            ul.am-dropdown-content.tpl-task-list-dropdown-ul
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-check
+                                                        |  保存
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-pencil
+                                                        |  编辑
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-trash-o
+                                                        |  删除
+                                li
+                                    .task-checkbox
+                                        input(type='hidden', value='1', name='test')
+                                        input.liChild(type='checkbox', value='2', name='test')
+                                    .task-title
+                                        span.task-title-sp  添加 .am-btn-group-justify class 让按钮组里的按钮平均分布，填满容器宽度。 
+                                        span.label.label-sm.label-default 已废弃
+                                    .task-config
+                                        .am-dropdown.tpl-task-list-dropdown(data-am-dropdown='')
+                                            a.am-dropdown-toggle.tpl-task-list-hover(href='###', data-am-dropdown-toggle='')
+                                                i.am-icon-cog
+                                                span.am-icon-caret-down
+                                            ul.am-dropdown-content.tpl-task-list-dropdown-ul
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-check
+                                                        |  保存
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-pencil
+                                                        |  编辑
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-trash-o
+                                                        |  删除
+                                li
+                                    .task-checkbox
+                                        input(type='hidden', value='1', name='test')
+                                        input.liChild(type='checkbox', value='2', name='test')
+                                    .task-title
+                                        span.task-title-sp
+                                            | 使用 LESS： 通过设置变量 @fa-font-path 覆盖默认的值，如 @fa-font-path: "../fonts";。这个变量定义在 icon.less 里。
+                                        span.label.label-sm.label-warning 市场部
+                                    .task-config
+                                        .am-dropdown.tpl-task-list-dropdown(data-am-dropdown='')
+                                            a.am-dropdown-toggle.tpl-task-list-hover(href='###', data-am-dropdown-toggle='')
+                                                i.am-icon-cog
+                                                span.am-icon-caret-down
+                                            ul.am-dropdown-content.tpl-task-list-dropdown-ul
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-check
+                                                        |  保存
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-pencil
+                                                        |  编辑
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-trash-o
+                                                        |  删除
+                                li
+                                    .task-checkbox
+                                        input(type='hidden', value='1', name='test')
+                                        input.liChild(type='checkbox', value='2', name='test')
+                                    .task-title
+                                        span.task-title-sp  添加 .am-btn-group-justify class 让按钮组里的按钮平均分布，填满容器宽度。 
+                                        span.label.label-sm.label-default 已废弃
+                                    .task-config
+                                        .am-dropdown.tpl-task-list-dropdown(data-am-dropdown='')
+                                            a.am-dropdown-toggle.tpl-task-list-hover(href='###', data-am-dropdown-toggle='')
+                                                i.am-icon-cog
+                                                span.am-icon-caret-down
+                                            ul.am-dropdown-content.tpl-task-list-dropdown-ul
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-check
+                                                        |  保存
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-pencil
+                                                        |  编辑
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-trash-o
+                                                        |  删除
+                                li
+                                    .task-checkbox
+                                        input(type='hidden', value='1', name='test')
+                                        input.liChild(type='checkbox', value='2', name='test')
+                                    .task-title
+                                        span.task-title-sp  按照示例组织好 HTML 结构（不加 data-am-dropdown 属性），然后通过 JS 来调用。 
+                                        span.label.label-sm.label-success 技术部
+                                        span.task-bell
+                                            i.am-icon-bell-o
+                                    .task-config
+                                        .am-dropdown.tpl-task-list-dropdown(data-am-dropdown='')
+                                            a.am-dropdown-toggle.tpl-task-list-hover(href='###', data-am-dropdown-toggle='')
+                                                i.am-icon-cog
+                                                span.am-icon-caret-down
+                                            ul.am-dropdown-content.tpl-task-list-dropdown-ul
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-check
+                                                        |  保存
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-pencil
+                                                        |  编辑
+                                                li
+                                                    a(href='javascript:;')
+                                                        i.am-icon-trash-o
+                                                        |  删除
+            .am-u-md-6.am-u-sm-12.row-mb
+                .tpl-portlet
+                    .tpl-portlet-title
+                        .tpl-caption.font-green
+                            span 项目进度
+                    .am-tabs.tpl-index-tabs(data-am-tabs='')
+                        ul.am-tabs-nav.am-nav.am-nav-tabs
+                            li.am-active
+                                a(href='#tab1') 进行中
+                            li
+                                a(href='#tab2') 已完成
+                        .am-tabs-bd
+                            #tab1.am-tab-panel.am-fade.am-in.am-active
+                                #wrapperA.wrapper
+                                    #scroller.scroller
+                                        ul.tpl-task-list.tpl-task-remind
+                                            li
+                                                .cosB
+                                                    | 12分钟前
+                                                .cosA
+                                                    span.cosIco
+                                                        i.am-icon-bell-o
+                                                    span
+                                                        | 注意：Chrome 和 Firefox 下， display: inline-block; 或 display: block; 的元素才会应用旋转动画。
+                                                        span.tpl-label-info
+                                                            | 提取文件
+                                                            i.am-icon-share
+                                            li
+                                                .cosB
+                                                    | 36分钟前
+                                                .cosA
+                                                    span.cosIco.label-danger
+                                                        i.am-icon-bolt
+                                                    span  FontAwesome 在绘制图标的时候不同图标宽度有差异， 添加 .am-icon-fw 将图标设置为固定的宽度，解决宽度不一致问题（v2.3 新增）。
+                                            li
+                                                .cosB
+                                                    | 2小时前
+                                                .cosA
+                                                    span.cosIco.label-info
+                                                        i.am-icon-bullhorn
+                                                    span  使用 flexbox 实现，只兼容 IE 10+ 及其他现代浏览器。
+                                            li
+                                                .cosB
+                                                    | 1天前
+                                                .cosA
+                                                    span.cosIco.label-warning
+                                                        i.am-icon-plus
+                                                    span  部分用户反应在过长的 Tabs 中滚动页面时会意外触发 Tab 切换事件，用户可以选择禁用触控操作。
+                                            li
+                                                .cosB
+                                                    | 12分钟前
+                                                .cosA
+                                                    span.cosIco
+                                                        i.am-icon-bell-o
+                                                    span
+                                                        | 注意：Chrome 和 Firefox 下， display: inline-block; 或 display: block; 的元素才会应用旋转动画。
+                                                        span.tpl-label-info
+                                                            | 提取文件
+                                                            i.am-icon-share
+                                            li
+                                                .cosB
+                                                    | 36分钟前
+                                                .cosA
+                                                    span.cosIco.label-danger
+                                                        i.am-icon-bolt
+                                                    span  FontAwesome 在绘制图标的时候不同图标宽度有差异， 添加 .am-icon-fw 将图标设置为固定的宽度，解决宽度不一致问题（v2.3 新增）。
+                                            li
+                                                .cosB
+                                                    | 2小时前
+                                                .cosA
+                                                    span.cosIco.label-info
+                                                        i.am-icon-bullhorn
+                                                    span  使用 flexbox 实现，只兼容 IE 10+ 及其他现代浏览器。
+                            #tab2.am-tab-panel.am-fade
+                                #wrapperB.wrapper
+                                    #scroller.scroller
+                                        ul.tpl-task-list.tpl-task-remind
+                                            li
+                                                .cosB
+                                                    | 12分钟前
+                                                .cosA
+                                                    span.cosIco
+                                                        i.am-icon-bell-o
+                                                    span
+                                                        | 注意：Chrome 和 Firefox 下， display: inline-block; 或 display: block; 的元素才会应用旋转动画。
+                                                        span.tpl-label-info
+                                                            | 提取文件
+                                                            i.am-icon-share
+                                            li
+                                                .cosB
+                                                    | 36分钟前
+                                                .cosA
+                                                    span.cosIco.label-danger
+                                                        i.am-icon-bolt
+                                                    span  FontAwesome 在绘制图标的时候不同图标宽度有差异， 添加 .am-icon-fw 将图标设置为固定的宽度，解决宽度不一致问题（v2.3 新增）。
+                                            li
+                                                .cosB
+                                                    | 2小时前
+                                                .cosA
+                                                    span.cosIco.label-info
+                                                        i.am-icon-bullhorn
+                                                    span  使用 flexbox 实现，只兼容 IE 10+ 及其他现代浏览器。
+                                            li
+                                                .cosB
+                                                    | 1天前
+                                                .cosA
+                                                    span.cosIco.label-warning
+                                                        i.am-icon-plus
+                                                    span  部分用户反应在过长的 Tabs 中滚动页面时会意外触发 Tab 切换事件，用户可以选择禁用触控操作。
+                                            li
+                                                .cosB
+                                                    | 12分钟前
+                                                .cosA
+                                                    span.cosIco
+                                                        i.am-icon-bell-o
+                                                    span
+                                                        | 注意：Chrome 和 Firefox 下， display: inline-block; 或 display: block; 的元素才会应用旋转动画。
+                                                        span.tpl-label-info
+                                                            | 提取文件
+                                                            i.am-icon-share
+                                            li
+                                                .cosB
+                                                    | 36分钟前
+                                                .cosA
+                                                    span.cosIco.label-danger
+                                                        i.am-icon-bolt
+                                                    span  FontAwesome 在绘制图标的时候不同图标宽度有差异， 添加 .am-icon-fw 将图标设置为固定的宽度，解决宽度不一致问题（v2.3 新增）。
+                                            li
+                                                .cosB
+                                                    | 2小时前
+                                                .cosA
+                                                    span.cosIco.label-info
+                                                        i.am-icon-bullhorn
+                                                    span  使用 flexbox 实现，只兼容 IE 10+ 及其他现代浏览器。
