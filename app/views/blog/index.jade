@@ -70,63 +70,31 @@ block content
                         span 
                             =moment(post.created).format('YYYY-MM-DD')
                         h1
-                            a(href='/posts/view/'+post._id,target="_blank") 
+                            a(href='/posts/view/'+post._id,target="_blank",title="#{post.slug}") 
                                 =post.title
                         p
                             =truncate(post.content,150)
                         p
                             分类&nbsp
-                            =post.category.name
+                            a(href='/category/'+post.category.name,target="_blank")
+                                =post.category.name
                             评论&nbsp
                             =post.comments.length
 
             ul.am-pagination
                 li.am-pagination-prev
-                    a(href='') « Prev
+                    if pageNum <= 1
+                        a(href='#') « Prev
+                    else
+                        a(href='/?page=#{pageNum-1}') « Prev
+                li
+                    当前：
+                    =pageNum
+                    总共：
+                    =pageCount
                 li.am-pagination-next
-                    a(href='') Next »
-        .am-u-md-4.am-u-sm-12.blog-sidebar
-            .blog-sidebar-widget.blog-bor
-                h2.blog-text-center.blog-title
-                    span About ME
-                img.blog-entry-img(src='/blog/assets/i/f14.jpg', alt='about me')
-                p 妹纸
-                p
-                    | 我是妹子UI，中国首个开源 HTML5 跨屏前端框架
-                p 我不想成为一个庸俗的人。十年百年后，当我们死去，质疑我们的人同样死去，后人看到的是裹足不前、原地打转的你，还是一直奔跑、走到远方的我？
-            .blog-sidebar-widget.blog-bor
-                h2.blog-text-center.blog-title
-                    span Contact ME
-                p
-                    a(href='')
-                        span.am-icon-qq.am-icon-fw.am-primary.blog-icon
-                    a(href='')
-                        span.am-icon-github.am-icon-fw.blog-icon
-                    a(href='')
-                        span.am-icon-weibo.am-icon-fw.blog-icon
-                    a(href='')
-                        span.am-icon-reddit.am-icon-fw.blog-icon
-                    a(href='')
-                        span.am-icon-weixin.am-icon-fw.blog-icon
-            .blog-clear-margin.blog-sidebar-widget.blog-bor.am-g
-                h2.blog-title
-                    span TAG cloud
-                .am-u-sm-12.blog-clear-padding
-                    a.blog-tag(href='') amaze
-                    a.blog-tag(href='') 妹纸 UI
-                    a.blog-tag(href='') HTML5
-                    a.blog-tag(href='') 这是标签
-                    a.blog-tag(href='') Impossible
-                    a.blog-tag(href='') 开源前端框架
-            .blog-sidebar-widget.blog-bor
-                h2.blog-title
-                    span 么么哒
-                ul.am-list
-                    li
-                        a(href='#') 每个人都有一个死角， 自己走不出来，别人也闯不进去。
-                    li
-                        a(href='#') 我把最深沉的秘密放在那里。
-                    li
-                        a(href='#') 你不懂我，我不怪你。
-                    li
-                        a(href='#') 每个人都有一道伤口， 或深或浅，盖上布，以为不存在。
+                    if pageNum == pageCount - 1
+                        a(href='#') Next »
+                    else
+                        a(href='/?page=#{pageNum+1}') Next »
+        include sidebar

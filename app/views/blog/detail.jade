@@ -1,0 +1,81 @@
+extends layout
+
+block content
+    .am-g.am-g-fixed.blog-fixed.blog-content
+        .am-u-md-8.am-u-sm-12
+            article.am-article.blog-article-p
+                .am-article-hd
+                    h1.am-article-title.blog-text-center 
+                        =article.title
+                    p.am-article-meta.blog-text-center
+                        span
+                            a.blog-color(href='#') 
+                                =article.author.name  
+                        | - 
+                        span
+                            a(href='#') 
+                                =article.author.email  
+                        | - 
+                        span
+                            a(href='#') 
+                                =moment(article.created).format('YYYY-MM-DD')
+                .am-article-bd
+                    img.blog-entry-img.blog-article-margin(src='#{article.imgUrl}', alt='')
+                    p.am-article-lead  引用blockquote： 
+                    blockquote
+                        p
+                            | People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully. I’m actually as proud of the things we haven’t done as the things I have done. Innovation is saying no to 1,000 things.
+                        footer
+                            cite Steve Jobs
+                            |  – Apple Worldwide Developers’ Conference, 1997
+                    p
+                        =article.content
+                    p
+            .am-g.blog-article-widget.blog-article-margin
+                .am-u-lg-4.am-u-md-5.am-u-sm-7.am-u-sm-centered.blog-text-center
+                    span.am-icon-tags   
+                    a(href='#') 分类
+                    |  : 
+                    a(href='#') 
+                        =article.category.name
+                    |  
+                    hr
+                    a(href='')
+                        span.am-icon-qq.am-icon-fw.am-primary.blog-icon
+                    a(href='')
+                        span.am-icon-wechat.am-icon-fw.blog-icon
+                    a(href='')
+                        span.am-icon-weibo.am-icon-fw.blog-icon
+            hr
+            .am-g.blog-author.blog-article-margin
+                .am-u-sm-3.am-u-md-3.am-u-lg-2
+                    img.blog-author-img.am-circle(src='assets/i/f15.jpg', alt='')
+                .am-u-sm-9.am-u-md-9.am-u-lg-10
+                    h3
+                        span 作者  :  
+                        span.blog-color amazeui
+                    p
+                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            hr
+            ul.am-pagination.blog-article-margin
+                li.am-pagination-prev
+                    a(href='#') « 一切的回顾
+                li.am-pagination-next
+                    a(href='') 不远的未来 »
+            hr
+            form.am-form.am-g
+                h3.blog-comment 评论
+                fieldset
+                    .am-form-group.am-u-sm-4.blog-clear-left
+                        input(type='text', placeholder='名字')
+                    .am-form-group.am-u-sm-4
+                        input(type='email', placeholder='邮箱')
+                    .am-form-group.am-u-sm-4.blog-clear-right
+                        input(type='password', placeholder='网站')
+                    .am-form-group
+                        textarea(rows='5', placeholder='一字千金')
+                    p
+                        button.am-btn.am-btn-default(type='submit') 发表评论
+            hr
+        
+        include sidebar

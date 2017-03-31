@@ -1,0 +1,47 @@
+extends layout
+
+block content
+    h1.am-text-center 
+        =title
+    .am-g.am-g-fixed.blog-fixed
+        .am-u-md-8.am-u-sm-12
+            each post in posts
+                article.am-g.blog-entry-article
+                    .am-u-lg-6.am-u-md-12.am-u-sm-12.blog-entry-img
+                        img.am-u-sm-12(src='#{post.imgUrl}', alt='')    
+                    .am-u-lg-6.am-u-md-12.am-u-sm-12.blog-entry-text
+                        span
+                            a.blog-color(href='#') 
+                                =post.author.name  
+                        span 
+                            =post.author.email  
+                        span 
+                            =moment(post.created).format('YYYY-MM-DD')
+                        h1
+                            a(href='/posts/view/'+post._id,target="_blank") 
+                                =post.title
+                        p
+                            =truncate(post.content,150)
+                        p
+                            分类&nbsp
+                            =post.category.name
+                            评论&nbsp
+                            =post.comments.length
+
+            ul.am-pagination
+                li.am-pagination-prev
+                    if pageNum <= 1
+                        a(href='#') « Prev
+                    else
+                        a(href='/category/'+title+'/?page=#{pageNum-1}') « Prev
+                li
+                    当前：
+                    =pageNum
+                    总共：
+                    =pageCount
+                li.am-pagination-next
+                    if pageNum == pageCount - 1
+                        a(href='#') Next »
+                    else
+                        a(href='/category/'+title+'/?page=#{pageNum+1}') Next »
+        include sidebar
