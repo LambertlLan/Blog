@@ -3,6 +3,8 @@ var glob = require('glob');
 
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var moment = require('moment');
+var truncate = require('truncate');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compress = require('compression');
@@ -16,6 +18,13 @@ module.exports = function(app, config) {
   app.set('views', config.root + '/app/views');
   app.set('view engine', 'jade');
 
+  //日期格式化
+  app.use(function (req,res,next) {
+    app.locals.pageName = req.path;
+    app.locals.moment = moment;
+    app.locals.truncate = truncate;
+    next();
+  })
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use(logger('dev'));
   app.use(bodyParser.json());
