@@ -39,19 +39,13 @@ block content
                                     |  删除
                     .am-u-sm-12.am-u-md-3
                         .am-form-group
-                            select(data-am-selected="{btnSize: 'sm'}")
-                                option(value='option1') 所有类别
-                                option(value='option2') IT业界
-                                option(value='option3') 数码产品
-                                option(value='option3') 笔记本电脑
-                                option(value='option3') 平板电脑
-                                option(value='option3') 只能手机
-                                option(value='option3') 超极本
+                            select#filter(data-am-selected='{searchBox: 1}',name="filter",value=filter)
+                                each item in categories
+                                    option(value='#{item._id}') 
+                                        =item.name
                     .am-u-sm-12.am-u-md-3
                         .am-input-group.am-input-group-sm
-                            input.am-form-field(type='text')
-                            span.am-input-group-btn
-                                button.am-btn.am-btn-default.am-btn-success.tpl-am-btn-success.am-icon-search(type='button')
+                            button#JS_search.am-btn.am-btn-default.am-btn-success.tpl-am-btn-success(type='button',onclick="search()")查询
                 .am-g
                     .am-u-sm-12
                         form.am-form
@@ -136,3 +130,7 @@ block content
                                                 a(href='/admin/postsList?page=#{pageNum+1}') »
                             hr
             .tpl-alert
+            script.
+                function search(){
+                    console.log($("#filter").val());
+                }

@@ -24,12 +24,21 @@ router.get('/login', function(req, res, next) {
 });
 //文章列表
 router.get('/postsList', function(req, res, next) {
+    //分页
     var pageNum = req.query.page !== undefined && req.query.page > 0 ? Math.abs(parseInt(req.query.page || 1, 10)) - 1 : 0;
     var pageSize = 10;
 
     //排序
     var sortby = req.query.sortby ? req.query.sortby : 'created';
     var sortdir = req.query.sortdir ? req.query.sortdir : 'desc';
+    //过滤
+    var condotions = {};
+    if(req.query.filter){
+        condotions = {
+            published: true,
+            category:req.query.filter.trim()
+        }
+    }
 
     if (['title', 'category', 'created'].indexOf(sortby) === -1) {
         sortby = 'created';
@@ -39,9 +48,7 @@ router.get('/postsList', function(req, res, next) {
     }
     var sortObj = {};
     sortObj[sortby] = sortdir;
-    Article.find({
-            published: true
-        })
+    Article.find(condotions)
         .sort(sortObj)
         .limit(pageSize).skip(pageNum * 10)
         .populate('author')
@@ -62,7 +69,8 @@ router.get('/postsList', function(req, res, next) {
                     pageNum: pageNum + 1,
                     posts: articles,
                     sortby: sortby,
-                    sortdir: sortdir
+                    sortdir: sortdir,
+                    filter:req.query.filter
                 });
             })
 
