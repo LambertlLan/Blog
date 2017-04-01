@@ -16,14 +16,18 @@ router.get('/', function(req, res, next) {
 
     Article.find({
             published: true
-        }).limit(pageSize).skip(pageNum * 10)
+        })
+        .sort({
+                "created":'desc'
+            })
+        .limit(pageSize).skip(pageNum * 10)
         .populate('author')
         .populate('category')
         .exec(function(err, articles) {
             if (err) return next(err);
 
-            Article.find(function(err, result) {
-                var totalCount = result.length;
+            Article.count(function(err, result) {
+                var totalCount = result;
                 var pageCount = Math.ceil(totalCount / pageSize);
 
                 if (pageNum > pageCount) {
@@ -52,8 +56,12 @@ router.get('/category/:name', function(req, res, next) {
             Article.find({
                 category: category,
                 published:true
-            }).limit(pageSize).skip(pageNum * 10)
-            .sort('created')
+            })
+            .sort({
+                "created":'desc'
+            })
+            .limit(pageSize)
+            .skip(pageNum * 10)
             .populate('author')
             .populate('category')
             .exec(function(err, result) {

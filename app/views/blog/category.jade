@@ -40,7 +40,7 @@ block content
                     总共：
                     =pageCount
                 li.am-pagination-next
-                    if pageNum == pageCount - 1
+                    if pageNum == pageCount
                         a(href='#') Next »
                     else
                         a(href='/category/'+title+'/?page=#{pageNum+1}') Next »

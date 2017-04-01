@@ -12,69 +12,88 @@ var methodOverride = require('method-override');
 
 var mongoose = require('mongoose');
 var Category = mongoose.model('Category');
+var expressValidator = require('express-validator');
 
 module.exports = function(app, config) {
-  var env = process.env.NODE_ENV || 'development';
-  app.locals.ENV = env;
-  app.locals.ENV_DEVELOPMENT = env == 'development';
-  
-  app.set('views', config.root + '/app/views');
-  app.set('view engine', 'jade');
+    var env = process.env.NODE_ENV || 'development';
+    app.locals.ENV = env;
+    app.locals.ENV_DEVELOPMENT = env == 'development';
 
-  //日期格式化
-  app.use(function (req,res,next) {
-    app.locals.pageName = req.path;
-    app.locals.moment = moment;
-    app.locals.truncate = truncate;
-    Category.find(function (err,categories) {
-      if(err){
-        return next(err);
-      }
-      app.locals.categories = categories;
-      next();
+    app.set('views', config.root + '/app/views');
+    app.set('view engine', 'jade');
+
+    //日期格式化
+    app.use(function(req, res, next) {
+        app.locals.pageName = req.path;
+        app.locals.moment = moment;
+        app.locals.truncate = truncate;
+        Category.find(function(err, categories) {
+            if (err) {
+                return next(err);
+            }
+            app.locals.categories = categories;
+            next();
+        })
     })
-  })
-  // app.use(favicon(config.root + '/public/img/favicon.ico'));
-  app.use(logger('dev'));
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({
-    extended: true
-  }));
-  app.use(cookieParser());
-  app.use(compress());
-  app.use(express.static(config.root + '/public'));
-  app.use(methodOverride());
+    // app.use(favicon(config.root + '/public/img/favicon.ico'));
+    app.use(logger('dev'));
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
+    //expressValidator必须位于bodyparser之后
+    app.use(expressValidator({
+        errorFormatter: function(param, msg, value) {
+            var namespace = param.split('.'),
+                root = namespace.shift(),
+                formParam = root;
 
-  var controllers = glob.sync(config.root + '/app/controllers/*.js');
-  controllers.forEach(function (controller) {
-    require(controller)(app);
-  });
+            while (namespace.length) {
+                formParam += '[' + namespace.shift() + ']';
+            }
+            return {
+                param: formParam,
+                msg: msg,
+                value: value
+            };
+        }
+    }));
 
-  app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-  });
-  
-  if(app.get('env') === 'development'){
-    app.use(function (err, req, res, next) {
-      res.status(err.status || 500);
-      res.render('error', {
-        message: err.message,
-        error: err,
-        title: 'error'
-      });
+    app.use(cookieParser());
+    app.use(compress());
+    app.use(express.static(config.root + '/public'));
+    app.use(methodOverride());
+
+    var controllers = glob.sync(config.root + '/app/controllers/*.js');
+    controllers.forEach(function(controller) {
+        require(controller)(app);
     });
-  }
 
-  app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-      res.render('error', {
-        message: err.message,
-        error: {},
-        title: 'error'
-      });
-  });
+    app.use(function(req, res, next) {
+        var err = new Error('Not Found');
+        err.status = 404;
+        next(err);
+    });
 
-  return app;
+    if (app.get('env') === 'development') {
+        app.use(function(err, req, res, next) {
+            res.status(err.status || 500);
+            res.render('error', {
+                message: err.message,
+                error: err,
+                title: 'error'
+            });
+        });
+    }
+
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: {},
+            title: 'error'
+        });
+    });
+
+    return app;
 };

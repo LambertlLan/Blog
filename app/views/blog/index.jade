@@ -73,7 +73,7 @@ block content
                             a(href='/posts/view/'+post._id,target="_blank",title="#{post.slug}") 
                                 =post.title
                         p
-                            =truncate(post.content,150)
+                            !=truncate(post.content,150)
                         p
                             分类&nbsp
                             a(href='/category/'+post.category.name,target="_blank")
@@ -93,7 +93,7 @@ block content
                     总共：
                     =pageCount
                 li.am-pagination-next
-                    if pageNum == pageCount - 1
+                    if pageNum == pageCount
                         a(href='#') Next »
                     else
                         a(href='/?page=#{pageNum+1}') Next »

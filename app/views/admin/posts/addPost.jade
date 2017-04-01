@@ -1,0 +1,59 @@
+extends ../layout
+
+
+block content
+    script(src="/ckeditor/ckeditor.js")
+    .tpl-content-wrapper
+
+                if errors&&errors.length
+                    ul.errors
+                        each item in errors
+                            li
+                                =item.msg
+
+                .tpl-content-page-title
+                    | Amaze UI 表单
+                ol.am-breadcrumb
+                    li
+                        a.am-icon-home(href='#') 首页
+                    li
+                        a(href='#') 表单
+                    li.am-active Amaze UI 表单
+                .tpl-portlet-components
+                    .portlet-title
+                        .caption.font-green.bold
+                            span.am-icon-code
+                            |  表单
+                        .tpl-portlet-input.tpl-fz-ml
+                            .portlet-input.input-small.input-inline
+                                .input-icon.right
+                                    i.am-icon-search
+                                    input.form-control.form-control-solid(type='text', placeholder='搜索...')
+                    .tpl-block
+                        .am-g.tpl-amazeui-form
+                            .am-u-sm-12.am-u-md-9
+                                form.am-form.am-form-horizontal(action=action,method="POST")
+                                    .am-form-group
+                                        label.am-u-sm-3.am-form-label(for='user-name') 文章标题 / title
+                                        .am-u-sm-9
+                                            input#user-name(type='text', placeholder='文章标题 / title',name="title",value=article.title)
+                                    .am-form-group
+                                        label.am-u-sm-3.am-form-label(for='user-phone')
+                                            | 分类 
+                                            span.tpl-form-line-small-title Category
+                                        .am-u-sm-9
+                                            select(data-am-selected='{searchBox: 1}',name="category",value=article.category)
+                                                each item in categories
+                                                    option(value='#{item._id}')
+                                                        =item.name
+                                    .am-form-group
+                                        label.am-u-sm-3.am-form-label(for='editor1') 简介 / Intro
+                                        .am-u-sm-9
+                                            textarea#editor1(placeholder='输入个人简介',name="content",rows="10",cols="80")
+                                                =article.content
+                                            small 250字以内写出你的一生...
+                                    .am-form-group
+                                        .am-u-sm-9.am-u-sm-push-3
+                                            button.am-btn.am-btn-primary(type='submit') 保存修改
+    script(type="text/javascript").
+        CKEDITOR.replace( 'editor1' );    

@@ -1,0 +1,138 @@
+extends ../layout
+
+block content
+    .tpl-content-wrapper
+        .tpl-content-page-title
+            | Amaze UI 文字列表
+        ol.am-breadcrumb
+            li
+                a.am-icon-home(href='#') 首页
+            li
+                a(href='#') Amaze UI CSS
+            li.am-active 文字列表
+        .tpl-portlet-components
+            .portlet-title
+                .caption.font-green.bold
+                    span.am-icon-code
+                    |  列表
+                .tpl-portlet-input.tpl-fz-ml
+                    .portlet-input.input-small.input-inline
+                        .input-icon.right
+                            i.am-icon-search
+                            input.form-control.form-control-solid(type='text', placeholder='搜索...')
+            .tpl-block
+                .am-g
+                    .am-u-sm-12.am-u-md-6
+                        .am-btn-toolbar
+                            .am-btn-group.am-btn-group-xs
+                                button.am-btn.am-btn-default.am-btn-success(type='button')
+                                    span.am-icon-plus
+                                    |  新增
+                                button.am-btn.am-btn-default.am-btn-secondary(type='button')
+                                    span.am-icon-save
+                                    |  保存
+                                button.am-btn.am-btn-default.am-btn-warning(type='button')
+                                    span.am-icon-archive
+                                    |  审核
+                                button.am-btn.am-btn-default.am-btn-danger(type='button')
+                                    span.am-icon-trash-o
+                                    |  删除
+                    .am-u-sm-12.am-u-md-3
+                        .am-form-group
+                            select(data-am-selected="{btnSize: 'sm'}")
+                                option(value='option1') 所有类别
+                                option(value='option2') IT业界
+                                option(value='option3') 数码产品
+                                option(value='option3') 笔记本电脑
+                                option(value='option3') 平板电脑
+                                option(value='option3') 只能手机
+                                option(value='option3') 超极本
+                    .am-u-sm-12.am-u-md-3
+                        .am-input-group.am-input-group-sm
+                            input.am-form-field(type='text')
+                            span.am-input-group-btn
+                                button.am-btn.am-btn-default.am-btn-success.tpl-am-btn-success.am-icon-search(type='button')
+                .am-g
+                    .am-u-sm-12
+                        form.am-form
+                            table.am-table.am-table-striped.am-table-hover.table-main
+                                thead
+                                    tr
+                                        th.table-id ID
+                                        th.table-title 
+                                            if(sortby === 'title')
+                                                if(sortdir === 'asc')
+                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=title&sortdir=desc")标题
+                                                else
+                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=title&sortdir=asc")标题
+                                            else
+                                                a(href="/admin/postsList?page=#{pageNum}&sortby=title&sortdir=asc")标题
+                                        th.table-type 
+                                            if(sortby === 'category')
+                                                if(sortdir === 'asc')
+                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=category&sortdir=desc")分类
+                                                else
+                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=category&sortdir=asc")分类
+                                            else
+                                                a(href="/admin/postsList?page=#{pageNum}&sortby=category&sortdir=asc")分类
+                                        th.table-author.am-hide-sm-only 作者
+                                        th.table-date.am-hide-sm-only 
+                                            if(sortby === 'created')
+                                                if(sortdir === 'asc')
+                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=created&sortdir=desc")修改日期
+                                                else
+                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=created&sortdir=asc")修改日期
+                                            else
+                                                a(href="/admin/postsList?page=#{pageNum}&sortby=created&sortdir=asc")修改日期
+                                        th.table-set 操作
+                                tbody
+                                    each item,index in posts
+                                        tr
+                                            td 
+                                                =index+1
+                                            td
+                                                a(href='/posts/view/'+item._id,target="_blank")
+                                                    =item.title
+                                            td
+                                                =item.category.name
+                                            td.am-hide-sm-only
+                                                =item.author.name
+                                            td.am-hide-sm-only
+                                                =moment(item.created).format('YY-MM-DD')
+                                            td
+                                                .am-btn-toolbar
+                                                    .am-btn-group.am-btn-group-xs
+                                                        a(style='background-color:#fff',href='/admin/edit/'+item._id).am-btn.am-btn-default.am-btn-xs.am-text-secondary
+                                                            span.am-icon-pencil-square-o
+                                                            |  编辑
+                                                        a(style='background-color:#fff' href='/admin/deletePost/'+item._id).am-btn.am-btn-default.am-btn-xs.am-text-danger.am-hide-sm-only
+                                                            span.am-icon-trash-o
+                                                            |  删除
+                            .am-cf
+                                .am-fr
+                                    ul.am-pagination.tpl-pagination
+                                        if pageNum <= 1
+                                            li.am-disabled
+                                                a(href='#') «
+                                        else
+                                            li
+                                                a(href='/admin/postsList?page=#{pageNum-1}') « 
+                                        - var currentPage = 1
+                                        while currentPage < pageCount
+                                            if(currentPage === pageNum)
+                                                li.am-active.am-disabled
+                                                    a(href='#')
+                                                        =currentPage++
+                                            else
+                                                li
+                                                    a(href='/admin/postsList?page='+currentPage)
+                                                        =currentPage++
+                                        
+                                        if pageNum == pageCount - 1
+                                            li.am-disabled
+                                                a(href='#') »
+                                        else
+                                            li
+                                                a(href='/admin/postsList?page=#{pageNum+1}') »
+                            hr
+            .tpl-alert

@@ -30,7 +30,7 @@ html(lang='en')
             header.am-topbar.am-topbar-inverse.admin-header
                 .am-topbar-brand
                     a.tpl-logo(href='javascript:;')
-                        img(src='assets/img/logo.png', alt='')
+                        img(src='/assets/img/logo.png', alt='')
                 .am-icon-list.tpl-header-nav-hover-ico.am-fl.am-margin-right
                 button.am-topbar-btn.am-topbar-toggle.am-btn.am-btn-sm.am-btn-success.am-show-sm-only(data-am-collapse="{target: '#topbar-collapse'}")
                     span.am-sr-only 导航切换
@@ -79,14 +79,14 @@ html(lang='en')
                                 li
                                     a.tpl-dropdown-content-message(href='#')
                                         span.tpl-dropdown-content-photo
-                                            img(src='assets/img/user02.png', alt='')
+                                            img(src='/assets/img/user02.png', alt='')
                                         span.tpl-dropdown-content-subject
                                             span.tpl-dropdown-content-from  禁言小张 
                                             span.tpl-dropdown-content-time 10分钟前 
                                         span.tpl-dropdown-content-font  Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。 
                                     a.tpl-dropdown-content-message(href='#')
                                         span.tpl-dropdown-content-photo
-                                            img(src='assets/img/user03.png', alt='')
+                                            img(src='/assets/img/user03.png', alt='')
                                         span.tpl-dropdown-content-subject
                                             span.tpl-dropdown-content-from  Steam 
                                             span.tpl-dropdown-content-time 18分钟前
@@ -135,7 +135,7 @@ html(lang='en')
                             a.am-dropdown-toggle.tpl-header-list-link(href='javascript:;')
                                 span.tpl-header-list-user-nick 禁言小张
                                 span.tpl-header-list-user-ico
-                                    img(src='assets/img/user01.png')
+                                    img(src='/assets/img/user01.png')
                             ul.am-dropdown-content
                                 li
                                     a(href='#')
@@ -153,65 +153,8 @@ html(lang='en')
                             a.tpl-header-list-link(href='###')
                                 span.am-icon-sign-out.tpl-header-list-ico-out-size
         .tpl-page-container.tpl-page-header-fixed
-            block sidebar
-                .tpl-left-nav.tpl-left-nav-hover
-                    .tpl-left-nav-title
-                        | Amaze UI 列表
-                    .tpl-left-nav-list
-                        ul.tpl-left-nav-menu
-                            li.tpl-left-nav-item
-                                a.nav-link.active(href='index.html')
-                                    i.am-icon-home
-                                    span 首页
-                            li.tpl-left-nav-item
-                                a.nav-link.tpl-left-nav-link-list(href='chart.html')
-                                    i.am-icon-bar-chart
-                                    span 数据表
-                                    i.tpl-left-nav-content.tpl-badge-danger
-                                        | 12
-                            li.tpl-left-nav-item
-                                a.nav-link.tpl-left-nav-link-list(href='javascript:;')
-                                    i.am-icon-table
-                                    span 表格
-                                    i.am-icon-angle-right.tpl-left-nav-more-ico.am-fr.am-margin-right
-                                ul.tpl-left-nav-sub-menu
-                                    li
-                                        a(href='table-font-list.html')
-                                            i.am-icon-angle-right
-                                            span 文字表格
-                                            i.am-icon-star.tpl-left-nav-content-ico.am-fr.am-margin-right
-                                        a(href='table-images-list.html')
-                                            i.am-icon-angle-right
-                                            span 图片表格
-                                            i.tpl-left-nav-content.tpl-badge-success
-                                                | 18
-                                            a(href='form-news.html')
-                                                i.am-icon-angle-right
-                                                span 消息列表
-                                                i.tpl-left-nav-content.tpl-badge-primary
-                                                    | 5
-                                                a(href='form-news-list.html')
-                                                    i.am-icon-angle-right
-                                                    span 文字列表
-                            li.tpl-left-nav-item
-                                a.nav-link.tpl-left-nav-link-list(href='javascript:;')
-                                    i.am-icon-wpforms
-                                    span 表单
-                                    i.am-icon-angle-right.tpl-left-nav-more-ico.am-fr.am-margin-right.tpl-left-nav-more-ico-rotate
-                                ul.tpl-left-nav-sub-menu(style='display: block;')
-                                    li
-                                        a(href='form-amazeui.html')
-                                            i.am-icon-angle-right
-                                            span Amaze UI 表单
-                                            i.am-icon-star.tpl-left-nav-content-ico.am-fr.am-margin-right
-                                        a(href='form-line.html')
-                                            i.am-icon-angle-right
-                                            span 线条表单
-                            li.tpl-left-nav-item
-                                a.nav-link.tpl-left-nav-link-list(href='login.html')
-                                    i.am-icon-key
-                                    span 登录
-                block content
+            include sidebar
+            block content
         block footer
             footer 
                 script(src='/assets/js/jquery.min.js')
