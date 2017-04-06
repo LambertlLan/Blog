@@ -44,13 +44,13 @@ html
                     span  Sign Up
                 | 		
                 .am-u-sm-10.login-am-center
-                    form.am-form
+                    form.am-form(action='/login/toLogin',method="POST")
                         fieldset
                             .am-form-group
-                                input#doc-ipt-email-1(type="email", placeholder="输入电子邮件")
+                                input#doc-ipt-email-1(type="text",name="name",placeholder="输入用户名")
                             | 					
                             .am-form-group
-                                input#doc-ipt-pwd-1(type="password", placeholder="设置个密码吧")
+                                input#doc-ipt-pwd-1(type="password",name="password", placeholder="输入密码")
                             | 					
                             p
                                 button.am-btn.am-btn-default(type="submit") 登录

@@ -16,12 +16,12 @@ router.get('/', function(req, res, next) {
     });
 });
 //登录
-router.get('/login', function(req, res, next) {
-    Article.find(function(err, articles) {
-        if (err) return next(err);
-        res.render('admin/login');
-    });
-});
+// router.get('/login', function(req, res, next) {
+//     Article.find(function(err, articles) {
+//         if (err) return next(err);
+//         res.render('admin/login');
+//     });
+// });
 //文章列表
 router.get('/postsList', function(req, res, next) {
     //分页
@@ -32,9 +32,9 @@ router.get('/postsList', function(req, res, next) {
     var sortby = req.query.sortby ? req.query.sortby : 'created';
     var sortdir = req.query.sortdir ? req.query.sortdir : 'desc';
     //过滤
-    var condotions = {};
+    var conditions = {};
     if(req.query.filter){
-        condotions = {
+        conditions = {
             published: true,
             category:req.query.filter.trim()
         }
@@ -48,14 +48,14 @@ router.get('/postsList', function(req, res, next) {
     }
     var sortObj = {};
     sortObj[sortby] = sortdir;
-    Article.find(condotions)
+    Article.find(conditions)
         .sort(sortObj)
         .limit(pageSize).skip(pageNum * 10)
         .populate('author')
         .populate('category')
         .exec(function(err, articles) {
             if (err) return next(err);
-            Article.count(function(err, result) {
+            Article.find(conditions).count(function(err, result) {
                 var totalCount = result;
                 var pageCount = Math.ceil(totalCount / pageSize);
 

@@ -40,9 +40,14 @@ block content
                     .am-u-sm-12.am-u-md-3
                         .am-form-group
                             select#filter(data-am-selected='{searchBox: 1}',name="filter",value=filter)
+                                option(value='111')全部分类
                                 each item in categories
-                                    option(value='#{item._id}') 
-                                        =item.name
+                                    if(item._id == filter)
+                                        option(value='#{item._id}' selected) 
+                                            =item.name
+                                    else
+                                        option(value='#{item._id}') 
+                                            =item.name
                     .am-u-sm-12.am-u-md-3
                         .am-input-group.am-input-group-sm
                             button#JS_search.am-btn.am-btn-default.am-btn-success.tpl-am-btn-success(type='button',onclick="search()")查询
@@ -56,28 +61,28 @@ block content
                                         th.table-title 
                                             if(sortby === 'title')
                                                 if(sortdir === 'asc')
-                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=title&sortdir=desc")标题
+                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=title&sortdir=desc&filter=#{filter}")标题
                                                 else
-                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=title&sortdir=asc")标题
+                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=title&sortdir=asc&filter=#{filter}")标题
                                             else
-                                                a(href="/admin/postsList?page=#{pageNum}&sortby=title&sortdir=asc")标题
+                                                a(href="/admin/postsList?page=#{pageNum}&sortby=title&sortdir=asc&filter=#{filter}")标题
                                         th.table-type 
                                             if(sortby === 'category')
                                                 if(sortdir === 'asc')
-                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=category&sortdir=desc")分类
+                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=category&sortdir=desc&filter=#{filter}")分类
                                                 else
-                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=category&sortdir=asc")分类
+                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=category&sortdir=asc&filter=#{filter}")分类
                                             else
-                                                a(href="/admin/postsList?page=#{pageNum}&sortby=category&sortdir=asc")分类
+                                                a(href="/admin/postsList?page=#{pageNum}&sortby=category&sortdir=asc&filter=#{filter}")分类
                                         th.table-author.am-hide-sm-only 作者
                                         th.table-date.am-hide-sm-only 
                                             if(sortby === 'created')
                                                 if(sortdir === 'asc')
-                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=created&sortdir=desc")修改日期
+                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=created&sortdir=desc&filter=#{filter}")修改日期
                                                 else
-                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=created&sortdir=asc")修改日期
+                                                    a(href="/admin/postsList?page=#{pageNum}&sortby=created&sortdir=asc&filter=#{filter}")修改日期
                                             else
-                                                a(href="/admin/postsList?page=#{pageNum}&sortby=created&sortdir=asc")修改日期
+                                                a(href="/admin/postsList?page=#{pageNum}&sortby=created&sortdir=asc&filter=#{filter}")修改日期
                                         th.table-set 操作
                                 tbody
                                     each item,index in posts
@@ -110,7 +115,7 @@ block content
                                                 a(href='#') «
                                         else
                                             li
-                                                a(href='/admin/postsList?page=#{pageNum-1}') « 
+                                                a(href='/admin/postsList?page=#{pageNum-1}&filter=#{filter}') « 
                                         - var currentPage = 1
                                         while currentPage < pageCount
                                             if(currentPage === pageNum)
@@ -119,7 +124,7 @@ block content
                                                         =currentPage++
                                             else
                                                 li
-                                                    a(href='/admin/postsList?page='+currentPage)
+                                                    a(href='/admin/postsList?page='+currentPage+'&filter='+filter)
                                                         =currentPage++
                                         
                                         if pageNum == pageCount - 1
@@ -127,10 +132,11 @@ block content
                                                 a(href='#') »
                                         else
                                             li
-                                                a(href='/admin/postsList?page=#{pageNum+1}') »
+                                                a(href='/admin/postsList?page=#{pageNum+1}&filter=#{filter}') »
                             hr
             .tpl-alert
             script.
                 function search(){
-                    console.log($("#filter").val());
+                    var category = $("#filter").val()
+                    window.location.href='/admin/postsList?page=1&filter='+category;
                 }

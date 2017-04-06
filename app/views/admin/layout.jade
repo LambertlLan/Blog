@@ -81,7 +81,8 @@ html(lang='en')
                                         span.tpl-dropdown-content-photo
                                             img(src='/assets/img/user02.png', alt='')
                                         span.tpl-dropdown-content-subject
-                                            span.tpl-dropdown-content-from  禁言小张 
+                                            span.tpl-dropdown-content-from
+                                                =user.name
                                             span.tpl-dropdown-content-time 10分钟前 
                                         span.tpl-dropdown-content-font  Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。 
                                     a.tpl-dropdown-content-message(href='#')
@@ -133,7 +134,8 @@ html(lang='en')
                                 span.admin-fullText 开启全屏
                         li.am-dropdown(data-am-dropdown='', data-am-dropdown-toggle='')
                             a.am-dropdown-toggle.tpl-header-list-link(href='javascript:;')
-                                span.tpl-header-list-user-nick 禁言小张
+                                span.tpl-header-list-user-nick
+                                    =user.name
                                 span.tpl-header-list-user-ico
                                     img(src='/assets/img/user01.png')
                             ul.am-dropdown-content

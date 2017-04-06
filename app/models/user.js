@@ -10,5 +10,10 @@ var UserSchema = new Schema({
   created:{ type:Date },
 });
 
+UserSchema.methods.verifyPassword = function (password) {
+  console.log('UserSchema.methods.verifyPassword'+password)
+  return password === this.password;
+}
+
 mongoose.model('User', UserSchema);
 
