@@ -3,27 +3,21 @@ var express = require('express'),
     mongoose = require('mongoose'),
     Article = mongoose.model('Article'),
     slug = require('slug'),
+    auth = require('./user'),
     Category = mongoose.model('Category');
 
 module.exports = function(app) {
     app.use('/admin', router);
 };
-
-router.get('/', function(req, res, next) {
+//后台首页
+router.get('/',auth.requireLogin , function(req, res, next) {
     Article.find(function(err, articles) {
         if (err) return next(err);
         res.render('admin/index');
     });
 });
-//登录
-// router.get('/login', function(req, res, next) {
-//     Article.find(function(err, articles) {
-//         if (err) return next(err);
-//         res.render('admin/login');
-//     });
-// });
 //文章列表
-router.get('/postsList', function(req, res, next) {
+router.get('/postsList',auth.requireLogin , function(req, res, next) {
     //分页
     var pageNum = req.query.page !== undefined && req.query.page > 0 ? Math.abs(parseInt(req.query.page || 1, 10)) - 1 : 0;
     var pageSize = 10;
@@ -33,7 +27,7 @@ router.get('/postsList', function(req, res, next) {
     var sortdir = req.query.sortdir ? req.query.sortdir : 'desc';
     //过滤
     var conditions = {};
-    if(req.query.filter){
+    if(req.query.filter && req.query.filter!=='undefined' && req.query.filter!=='all'){
         conditions = {
             published: true,
             category:req.query.filter.trim()
@@ -77,7 +71,7 @@ router.get('/postsList', function(req, res, next) {
         });
 });
 //删除文章
-router.get('/deletePost/:id', function(req, res, next) {
+router.get('/deletePost/:id',auth.requireLogin , function(req, res, next) {
     if (!req.params.id) {
         return next(new Error('not post id provided'));
     }
@@ -92,14 +86,14 @@ router.get('/deletePost/:id', function(req, res, next) {
     })
 });
 //添加文章
-router.get('/addPost', function(req, res, next) {
+router.get('/addPost',auth.requireLogin , function(req, res, next) {
     res.render('admin/posts/addPost', {
             article: {},
             action:'/admin/add'
         })
 });
 
-router.post('/add', function(req, res, next) {
+router.post('/add',auth.requireLogin , function(req, res, next) {
 
     req.checkBody('title', '文章标题不能为空').notEmpty();
     req.checkBody('category', '文章分类不能为空').notEmpty();
@@ -141,13 +135,13 @@ router.post('/add', function(req, res, next) {
     })
 });
 //修改文章
-router.get('/edit/:id',getArticle, function(req, res, next) {
+router.get('/edit/:id',auth.requireLogin ,getArticle, function(req, res, next) {
     res.render('admin/posts/addPost', {
         article: req.post,
         action:'/admin/edit/'+req.params.id
     })
 });
-router.post('/edit/:id',getArticle,function(req, res, next) {
+router.post('/edit/:id',auth.requireLogin ,getArticle,function(req, res, next) {
 
     req.checkBody('title', '文章标题不能为空').notEmpty();
     req.checkBody('category', '文章分类不能为空').notEmpty();
