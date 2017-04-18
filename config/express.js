@@ -11,6 +11,9 @@ var compress = require('compression');
 var methodOverride = require('method-override');
 var session = require('express-session');
 
+var flash = require('connect-flash');
+var messages = require('express-messages')
+
 var MongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -71,6 +74,12 @@ module.exports = function(app, config,connection) {
         cookie:{secure:false},
         store:new MongoStore({mongooseConnection:connection})
     }));
+    app.use(flash());
+    app.use(function (req,res,next) {
+        res.locals.messages = messages(req,res);
+        next();
+    })
+
     app.use(passport.initialize());
     app.use(passport.session());
 
@@ -95,6 +104,7 @@ module.exports = function(app, config,connection) {
     })
 
     app.use(compress());
+    app.use(express.static(config.root + '/uploads'));
     app.use(express.static(config.root + '/public'));
     app.use(methodOverride());
 

@@ -5,6 +5,7 @@ var express = require('express'),
     slug = require('slug'),
     auth = require('./user'),
     Category = mongoose.model('Category');
+var upload = require('../models/upload');
 
 module.exports = function(app) {
     app.use('/admin', router);
@@ -166,6 +167,8 @@ router.post('/edit/:id',auth.requireLogin ,getArticle,function(req, res, next) {
     })
 
 });
+//修改文章
+router.post('/upload',upload.uploadImg);
 function getArticle(req,res,next) {
     Article.findOne({
         _id: req.params.id

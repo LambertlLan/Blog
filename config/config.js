@@ -5,6 +5,7 @@ var path = require('path'),
 var config = {
   development: {
     root: rootPath,
+    basePath:'http://localhost:3000/',
     app: {
       name: 'blog'
     },

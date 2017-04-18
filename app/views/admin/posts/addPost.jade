@@ -2,7 +2,7 @@ extends ../layout
 
 
 block content
-    script(src="/ckeditor/ckeditor.js")
+    
     .tpl-content-wrapper
 
                 if errors&&errors.length
@@ -55,5 +55,25 @@ block content
                                     .am-form-group
                                         .am-u-sm-9.am-u-sm-push-3
                                             button.am-btn.am-btn-primary(type='submit') 保存修改
+    script(src="/wangeditor/js/wangeditor.min.js").
     script(type="text/javascript").
-        CKEDITOR.replace( 'editor1' );    
+        //富文本编辑器初始化
+        var editorInit = function () {
+            var editor = new wangEditor('editor1');
+            editor.config.menuFixed = false;
+            editor.config.uploadImgFileName = 'tupian';
+            editor.config.uploadParams = {
+                fileType: 'multipart/form-data'
+            };
+            editor.config.uploadImgUrl = '/admin/upload';
+            editor.config.menus = $.map(wangEditor.config.menus, function (item, key) {
+                if (item === 'location') {
+                    return null;
+                }
+                if (item === 'insertcode') {
+                    return null;
+                }
+                return item;
+            });
+            editor.create();
+        }();    

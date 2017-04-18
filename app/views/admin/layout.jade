@@ -21,8 +21,11 @@ html(lang='en')
             link(rel="stylesheet", href="/assets/css/admin.css")
             |     
             link(rel="stylesheet", href="/assets/css/app.css")
+            |     
+            link(rel="stylesheet", href="/wangeditor/css/wangEditor.min.css")
         block js
             script(src="/assets/js/echarts.min.js")
+            script(src='/assets/js/jquery.min.js')
             if ENV_DEVELOPMENT
                 script(src='http://localhost:35729/livereload.js')
     body(data-type="index")
@@ -161,7 +164,7 @@ html(lang='en')
             block content
         block footer
             footer 
-                script(src='/assets/js/jquery.min.js')
                 script(src='/assets/js/amazeui.min.js')
                 script(src='/assets/js/iscroll.js')
                 script(src='/assets/js/app.js')
+                
