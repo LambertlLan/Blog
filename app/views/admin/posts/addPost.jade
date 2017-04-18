@@ -38,6 +38,18 @@ block content
                                         .am-u-sm-9
                                             input#user-name(type='text', placeholder='文章标题 / title',name="title",value=article.title)
                                     .am-form-group
+                                        label.am-u-sm-3.am-form-label(for='user-weibo')
+                                            | 封面图 
+                                            span.tpl-form-line-small-title Images
+                                        .am-u-sm-9
+                                            .am-form-group.am-form-file.form-file-upload(data-filetype='image',data-url="/admin/upload")
+                                                .tpl-form-file-img.file-preview
+                                                    img(src='', alt='').JS_img
+                                                button.am-btn.am-btn-danger.am-btn-sm(type='button')
+                                                    i.am-icon-cloud-upload
+                                                    |  添加封面图片
+                                                input.JS_upload.upload-input#doc-form-file(type='file', multiple='',name="tupian")
+                                    .am-form-group
                                         label.am-u-sm-3.am-form-label(for='user-phone')
                                             | 分类 
                                             span.tpl-form-line-small-title Category
@@ -55,6 +67,9 @@ block content
                                     .am-form-group
                                         .am-u-sm-9.am-u-sm-push-3
                                             button.am-btn.am-btn-primary(type='submit') 保存修改
+                                            
+    script(src="/assets/js/jquery-file-upload/jquery.ajaxfileupload.js").
+    script(src="/assets/js/jquery-file-upload/upload.js").
     script(src="/wangeditor/js/wangeditor.min.js").
     script(type="text/javascript").
         //富文本编辑器初始化
