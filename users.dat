@@ -1,0 +1,1 @@
+{"_id":{"$oid":"58dcabb860a26c280852e967"},"name":"admin","email":"admin@nodeblog.io","password":"123","created":{"$date":"2017-03-30T06:54:48.884Z"}}
